@@ -12,10 +12,9 @@ const panelDivCSS = {
   'right':'0px' 
 };
 var Panel = {  
-  init: function() {
-    console.log('INIT');    
+  init: function() {     
     this.mainDiv =  document.createElement('div');
-    // this.mainDiv.innerHTML = panelDivHTML;
+    
 
     this.panelDiv = document.createElement('div');
     this.panelDiv.id = PANEL_DIV_ID;
@@ -25,20 +24,6 @@ var Panel = {
     this.panelDiv.css(panelDivCSS);
     this.panelDiv.html("GGG");
 
-    // let t = '#'+PANEL_DIV_ID;
-    // console.log(t);
-    // let y = $(t);
-    // y.html("TTTTTTTTTTTTTT");
-    // console.log(y);
-
-    // $("#"+PANEL_DIV_ID).innerHTML("TTTTTTTTTTTTTTTTTTT");
-
-    // this.panelDiv.innerHTML = 'DHMM TEST';
-
-    
-    
-
-    // this.mainDiv.innerHTML = `<div style="display:block; position:fixed; z-index:99999; background:#123456; opacity:0.8; width:300px; height:100vh; top:0px; right:0px; ">Last element</div>`;
     document.body.appendChild(this.mainDiv);
   },
   show: function() {},
