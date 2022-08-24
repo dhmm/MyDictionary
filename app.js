@@ -1,5 +1,4 @@
 const PANEL_DIV_ID = '__MY_DICTIONARY_MAIN_PANEL__';
-const panelDivHTML = '<div id="'+PANEL_DIV_ID+'">TT</div>';
 const panelDivCSS = {
   'display':'block' ,
   'position':'fixed' ,
