@@ -10,7 +10,7 @@
   },
 
   "permissions": [
-    "activeTab", "storage", "unlimitedStorage"
+    "activeTab", "storage"
   ],
 
   "browser_action": {    
