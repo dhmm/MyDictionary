@@ -1,26 +1,26 @@
 {
 
   "manifest_version": 2,
-
   "name": "My Dictionary",
   "version": "1.0",
-
-  "description": "Create your own dictionary for your own words for your languaes of your choice",
-  
-  
-  
-  "homepage_url": "https://github.com/dhmm/",
+  "description": "Create your own dictionary for your own words for your languaes of your choice",    
+  "homepage_url": "https://github.com/dhmm/MyDictionary",
   "icons": {
     "48": "icons/icon-48.png"
   },
 
-  "permissions": ["contextMenus"],
+  "permissions": [
+    "activeTab", "storage", "unlimitedStorage"
+  ],
 
-  "content_scripts": [
-    {
-      "matches": ["*://*/*"],
-      "js": ["assets/jquery-3.6.0.min.js", "app.js"]      
-    }
-  ]
-
+  "browser_action": {    
+    "default_icon": "icons/icon-32.png" ,
+    "theme_icons": [{
+      "light": "icons/icon-32.png",
+      "dark": "icons/icon-32.png",
+      "size": 32
+    }],
+    "default_title": "My Dictionary",
+    "default_popup": "popup/my_dictionary.html"
+  }  
 }

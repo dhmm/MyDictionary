@@ -1,0 +1,39 @@
+body {
+  font-family: 'Roboto' , Verdana, Geneva, Tahoma, sans-serif;
+}
+h4 {     
+  color:#123456;
+}
+.content, 
+.row 
+{ margin:5px 0px; }
+body{
+  margin-top:10px;
+  margin-bottom: 10px;
+}
+textarea{
+  resize: none!important;
+}
+.list-group-item 
+{
+  padding:5px;
+}
+
+#findedWordMeaning
+{
+  border: 1px solid #f2f2f2;
+  padding:5px;
+  background-color: #e4e4e4;
+  min-height: 500px;  
+  overflow-y: scroll;
+}
+#findedWordsList, .list-group
+{
+  min-height: 500px;
+  max-height:500px;
+  overflow-y: scroll;
+}
+#addWord
+{
+  display:none;
+}

@@ -8,7 +8,8 @@ const panelDivCSS = {
   'width':'300px' ,
   'height':'100vh' ,
   'top':'0px' ,
-  'right':'0px' 
+  'right':'0px',
+  'display': 'none',
 };
 var Panel = {  
   init: function() {     
@@ -25,8 +26,17 @@ var Panel = {
 
     document.body.appendChild(this.mainDiv);
   },
-  show: function() {},
-  hide: function() {}
+  show: function() {
+    this.panelDiv.show();
+  },
+  hide: function() {
+    this.panelDiv.show();
+  }
 }
 console.log('LOADED');
 Panel.init();
+// function toggleBookmark() {
+  
+// }
+// browser.browserAction.onClicked.addListener(toggleBookmark);
+// browser.browserAction.onClicked.addListener(function(){ console.log('GGGGGGGGGGGGGGGGGGGGGGGGG'); })
