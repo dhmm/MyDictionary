@@ -72,8 +72,9 @@ var MyDictionary = {
       else
       {        
         //Update existing word
-        MyDictionary.WORDS[itemIndexIfExists].means = means;
+        MyDictionary.WORDS[itemIndexIfExists].means = means;                
         MyDictionary.saveChanges();  
+        MyDictionary.showMeaning(word)
       }
     }
     else {
