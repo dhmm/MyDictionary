@@ -8,6 +8,7 @@ var MyDictionary = {
     this.txtKeyword = $('#keyword');
     this.txtaAddWord = $('#txtaAddWord');
     this.lstWords = $('#lstWords');
+    this.btnSaveChanges = $('#btnSaveChanges');
 
     this.selectedWordHeader = $('#selectedWordHeader');
     this.selectedWordMeaning= $('#selectedWordMeaning');
@@ -18,7 +19,7 @@ var MyDictionary = {
   initEvents : function() {
     this.btnAdd.click(MyDictionary.showAddPanel);
     this.txtKeyword.keyup(MyDictionary.keywordChanged);
-    this.btnAddWord.click(MyDictionary.insertNewWord);
+    this.btnAddWord.click(MyDictionary.insertNewWord);    
   },
   showAddPanel: function() {
     MyDictionary.pnlAddWord.show();        
@@ -60,6 +61,7 @@ var MyDictionary = {
 
       let word = $('#keyword').val();
       let means = $('#txtaAddWord').val();
+      means = means.replace(/\n/g, "<br />");
 
       if(itemIndexIfExists == -1) {
         if(MyDictionary.WORDS === undefined) {
@@ -74,13 +76,28 @@ var MyDictionary = {
         //Update existing word
         MyDictionary.WORDS[itemIndexIfExists].means = means;                
         MyDictionary.saveChanges();  
-        MyDictionary.showMeaning(word)
+        MyDictionary.showMeaning(word);
       }
     }
     else {
         alert('Word can\'t be empty');
     }    
     
+  },
+  updateWord: function(word) {
+    let index = MyDictionary.getWordIndex(word);
+    console.log(word);
+    if(index > -1) {
+      //Update existing word
+      let means = QUILL.getText();
+
+      MyDictionary.WORDS[index].means = means;                
+      MyDictionary.saveChanges();  
+      console.log(index);
+      console.log(MyDictionary.WORDS[index].word+' updated as '+MyDictionary.WORDS[index].means);
+
+    }
+
   },
   saveChanges: function() {       
     browser.storage.local.set({
@@ -130,11 +147,17 @@ var MyDictionary = {
     let wordIndex = MyDictionary.getWordIndex(word);        
     MyDictionary.selectedWordHeader.html(word);
     if(wordIndex > -1) {
-      MyDictionary.selectedWordMeaning.html(MyDictionary.WORDS[wordIndex].means);
-      
+      // MyDictionary.selectedWordMeaning.html(MyDictionary.WORDS[wordIndex].means);
+      QUILL.setText(MyDictionary.WORDS[wordIndex].means); 
+      MyDictionary.btnSaveChanges.click(()=> { MyDictionary.updateWord(word) });
+
     } else {
-      MyDictionary.selectedWordMeaning.html('Word not exists');
+      // MyDictionary.selectedWordMeaning.html('Word not exists');
+      QUILL.setText('Word not exists');  
+
     }
+    
+  
   },
   removeWord(id) {
     MyDictionary.WORDS.splice(id,1);
@@ -142,8 +165,12 @@ var MyDictionary = {
   },
 };
 
+
 $(document).ready(()=> { 
-  MyDictionary.init();    
+  MyDictionary.init();      
+  
 });
 
-
+let QUILL = new Quill('#selectedWordMeaning', {
+    theme: 'snow'
+  });

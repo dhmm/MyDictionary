@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="/content_scripts/assets/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/content_scripts/assets/quill/quill.snow.css">
   <link rel="stylesheet" href="my_dictionary.css">
 </head>
 
@@ -47,9 +48,11 @@
         <div class="col-6">
           <div id="findedWordMeaning">
             <h2 id="selectedWordHeader">Word</h2>
-            <p id="selectedWordMeaning">
+            <div id="selectedWordMeaning" style="display:block;min-height:80%;">
               ...
-            </p>
+            </div>
+            <br>
+            <div id="btnSaveChanges" class="btn btn-success">Save</div>
           </div>
         </div>
       </div>
@@ -62,6 +65,7 @@
 
 
   <script src="/content_scripts/assets/jquery/jquery.js"></script>
+  <script src="/content_scripts/assets/quill/quill.min.js"></script>
   <script src="/content_scripts/assets/bootstrap/bootstrap.min.js"></script>
 
   <script src="my_dictionary.js"></script>
