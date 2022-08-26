@@ -2,11 +2,9 @@ var MyDictionary = {
   init: function() {
     this.WORDS = [];
 
-    this.pnlAddWord = $('#addWord');
     this.btnAdd = $('#btnAdd');
-    this.btnAddWord = $('#btnAddWord');
-    this.txtKeyword = $('#keyword');
-    this.txtaAddWord = $('#txtaAddWord');
+    this.btnAddWord = $('#btnAddWord');    
+    this.txtKeyword = $('#keyword');  
     this.lstWords = $('#lstWords');
     this.btnSaveChanges = $('#btnSaveChanges');
 
@@ -17,15 +15,9 @@ var MyDictionary = {
     this.loadWords();  
   },
   initEvents : function() {
-    this.btnAdd.click(MyDictionary.showAddPanel);
+    this.btnAdd.click(MyDictionary.insertNewWord);
     this.txtKeyword.keyup(MyDictionary.keywordChanged);
-    this.btnAddWord.click(MyDictionary.insertNewWord);    
-  },
-  showAddPanel: function() {
-    MyDictionary.pnlAddWord.show();        
-  },
-  hideAddPanel: function() {
-    MyDictionary.pnlAddWord.hide();        
+
   },
   keywordChanged: function() { 
     var filter = MyDictionary.txtKeyword.val();
@@ -53,15 +45,14 @@ var MyDictionary = {
     let value = MyDictionary.txtKeyword.val();
     return MyDictionary.getWordIndex(value);
   },
-  insertNewWord: function() {            
+  insertNewWord: function() {          
     MyDictionary.txtKeyword.val(MyDictionary.txtKeyword.val().trim());
     
     if(! MyDictionary.isEmpty()){
       let itemIndexIfExists = MyDictionary.getKeywordWordIndexIfExists();
-
-      let word = $('#keyword').val();
-      let means = $('#txtaAddWord').val();
-      means = means.replace(/\n/g, "<br />");
+      
+      let word = $('#keyword').val();    
+      let means = '';
 
       if(itemIndexIfExists == -1) {
         if(MyDictionary.WORDS === undefined) {
@@ -72,11 +63,8 @@ var MyDictionary = {
         MyDictionary.saveChanges();    
       }
       else
-      {        
-        //Update existing word
-        MyDictionary.WORDS[itemIndexIfExists].means = means;                
-        MyDictionary.saveChanges();  
-        MyDictionary.showMeaning(word);
+      {   
+        alert('Word already exists. Select to change it, or remove');
       }
     }
     else {
@@ -85,18 +73,13 @@ var MyDictionary = {
     
   },
   updateWord: function(word) {
-    let index = MyDictionary.getWordIndex(word);
-    console.log(word);
-    if(index > -1) {
-      //Update existing word
-      let means = QUILL.getText();
-
-      MyDictionary.WORDS[index].means = means;                
-      MyDictionary.saveChanges();  
-      console.log(index);
-      console.log(MyDictionary.WORDS[index].word+' updated as '+MyDictionary.WORDS[index].means);
-
-    }
+    // let index = MyDictionary.getWordIndex(word);    
+    // if(index > -1) {
+    //   //Update existing word
+    //   let means = QUILL.getText();
+    //   MyDictionary.WORDS[index].means = means;                
+    //   MyDictionary.saveChanges();  
+    // }
 
   },
   saveChanges: function() {       
@@ -106,13 +89,10 @@ var MyDictionary = {
     .then(()=>{
       MyDictionary.loadWords();
     });
-    MyDictionary.clearForm();
-    MyDictionary.hideAddPanel();
-    
+    MyDictionary.clearForm();        
   },
   clearForm: function() {
-    MyDictionary.txtKeyword.val('');
-    MyDictionary.txtaAddWord.val('');
+    MyDictionary.txtKeyword.val('');    
   },
   loadWords: function() {
     MyDictionary.WORDS = [];
@@ -139,7 +119,7 @@ var MyDictionary = {
     }    
   },
   appendWordTolist(id, word) {
-    MyDictionary.lstWords.append('<li class="wordContainer"> <a href="#" id="wrd'+id+'" class="list-group-item list-group-item-action wordLink">'+word+'</a> <div id="btnRemoveWord'+id+'" class="btn btn-sm btn-warning wordRemoveButton">X</div> </li>');
+    MyDictionary.lstWords.append('<li class="wordContainer" tabindex="-1"> <a href="#" tabindex="-1" id="wrd'+id+'" class="list-group-item list-group-item-action wordLink">'+word+'</a> <div id="btnRemoveWord'+id+'" class="btn btn-sm btn-warning wordRemoveButton">X</div> </li>');
     $('#wrd'+id).click(()=>{ MyDictionary.showMeaning(word) })
     $('#btnRemoveWord'+id).click(()=>{ MyDictionary.removeWord(id) })
   },
@@ -154,10 +134,7 @@ var MyDictionary = {
     } else {
       // MyDictionary.selectedWordMeaning.html('Word not exists');
       QUILL.setText('Word not exists');  
-
     }
-    
-  
   },
   removeWord(id) {
     MyDictionary.WORDS.splice(id,1);
@@ -173,4 +150,4 @@ $(document).ready(()=> {
 
 let QUILL = new Quill('#selectedWordMeaning', {
     theme: 'snow'
-  });
+});
