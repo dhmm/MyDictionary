@@ -29,6 +29,9 @@ var MyDictionary = {
     }
   },
   getWordIndexIfExists: function() {
+    if(MyDictionary.WORDS === undefined) {
+      return -1;
+    }
     let value = MyDictionary.txtKeyword.val();
     for(let i =0 ; i < MyDictionary.WORDS.length;i++) {
       if(MyDictionary.WORDS[i].word == value) {        
@@ -37,7 +40,7 @@ var MyDictionary = {
     }
     return -1;
   },
-  insertNewWord: function() {
+  insertNewWord: function() {            
     MyDictionary.txtKeyword.val(MyDictionary.txtKeyword.val().trim());
     
     if(! MyDictionary.isEmpty()){
@@ -47,6 +50,9 @@ var MyDictionary = {
       let means = $('#txtaAddWord').val();
 
       if(itemIndexIfExists == -1) {
+        if(MyDictionary.WORDS === undefined) {
+          MyDictionary.WORDS = [];
+        }
         //Insert a new word        
         MyDictionary.WORDS.push({ word:word , means:means });    
         MyDictionary.saveChanges();    
@@ -66,8 +72,7 @@ var MyDictionary = {
   saveChanges: function() {       
     browser.storage.local.set({
       WORDS: MyDictionary.WORDS
-    });
-    console.log(MyDictionary.WORDS);
+    });    
   },
   loadWords: function() {
     browser.storage.local.get("WORDS").then((words)=> {
@@ -79,7 +84,7 @@ var MyDictionary = {
 };
 
 $(document).ready(()=> { 
-  MyDictionary.init();  
+  MyDictionary.init();    
 });
 
 
