@@ -76,7 +76,7 @@ var MyDictionary = {
     let index = MyDictionary.getWordIndex(word);        
     if(index > -1) {
       // Update existing word
-      let means = QUILL.getText();
+      let means = QUILL.getText();      
       MyDictionary.WORDS[index].means = means;                
       MyDictionary.saveChanges();  
     }
@@ -120,8 +120,10 @@ var MyDictionary = {
   },
   appendWordTolist(id, word) {
     MyDictionary.lstWords.append('<li class="wordContainer" tabindex="-1"> <a href="#" tabindex="-1" id="wrd'+id+'" class="list-group-item list-group-item-action wordLink">'+word+'</a> <div id="btnRemoveWord'+id+'" class="btn btn-sm btn-warning wordRemoveButton">X</div> </li>');
-    $('#wrd'+id).click(()=>{ MyDictionary.showMeaning(word) })
-    $('#btnRemoveWord'+id).click(()=>{ MyDictionary.removeWord(id) })
+    $('#wrd'+id).unbind();
+    $('#wrd'+id).click(()=>{ MyDictionary.showMeaning(word); })
+    $('#btnRemoveWord'+id).unbind();
+    $('#btnRemoveWord'+id).click(()=>{ MyDictionary.removeWord(id);})
   },
   showMeaning: function(word) {    
     let wordIndex = MyDictionary.getWordIndex(word);        
@@ -129,6 +131,7 @@ var MyDictionary = {
     if(wordIndex > -1) {
       // MyDictionary.selectedWordMeaning.html(MyDictionary.WORDS[wordIndex].means);
       QUILL.setText(MyDictionary.WORDS[wordIndex].means); 
+      MyDictionary.btnSaveChanges.unbind();
       MyDictionary.btnSaveChanges.click(()=> { MyDictionary.updateWord(word) });
 
     } else {
