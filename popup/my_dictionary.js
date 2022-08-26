@@ -73,13 +73,13 @@ var MyDictionary = {
     
   },
   updateWord: function(word) {
-    // let index = MyDictionary.getWordIndex(word);    
-    // if(index > -1) {
-    //   //Update existing word
-    //   let means = QUILL.getText();
-    //   MyDictionary.WORDS[index].means = means;                
-    //   MyDictionary.saveChanges();  
-    // }
+    let index = MyDictionary.getWordIndex(word);        
+    if(index > -1) {
+      // Update existing word
+      let means = QUILL.getText();
+      MyDictionary.WORDS[index].means = means;                
+      MyDictionary.saveChanges();  
+    }
 
   },
   saveChanges: function() {       
