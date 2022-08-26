@@ -121,9 +121,9 @@ var MyDictionary = {
     }    
   },
   appendWordTolist(id, word) {
-    MyDictionary.lstWords.append('<a href="#" id="wrd'+id+'" class="list-group-item list-group-item-action">'+word+'</a>');
+    MyDictionary.lstWords.append('<li class="wordContainer"> <a href="#" id="wrd'+id+'" class="list-group-item list-group-item-action wordLink">'+word+'</a> <div id="btnRemoveWord'+id+'" class="btn btn-sm btn-warning wordRemoveButton">X</div> </li>');
     $('#wrd'+id).click(()=>{ MyDictionary.showMeaning(word) })
-
+    $('#btnRemoveWord'+id).click(()=>{ MyDictionary.removeWord(id) })
   },
   showMeaning: function(word) {    
     let wordIndex = MyDictionary.getWordIndex(word);        
@@ -134,7 +134,11 @@ var MyDictionary = {
     } else {
       MyDictionary.selectedWordMeaning.html('Word not exists');
     }
-  }
+  },
+  removeWord(id) {
+    MyDictionary.WORDS.splice(id,1);
+    MyDictionary.saveChanges();    
+  },
 };
 
 $(document).ready(()=> { 
