@@ -1,5 +1,9 @@
+html, body
+{
+  min-width: 800px;
+}
 body {
-  font-family: 'Roboto' , Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'Roboto' , Verdana, Geneva, Tahoma, sans-serif;  
 }
 h4 {     
   color:#123456;
