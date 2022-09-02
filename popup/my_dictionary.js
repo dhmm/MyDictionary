@@ -128,17 +128,14 @@ var MyDictionary = {
   showMeaning: function(word) {    
     let wordIndex = MyDictionary.getWordIndex(word);        
     MyDictionary.selectedWordHeader.html(word);
-    if(wordIndex > -1) {
-      // MyDictionary.selectedWordMeaning.html(MyDictionary.WORDS[wordIndex].means);
-      // QUILL.setText(MyDictionary.WORDS[wordIndex].means);
+    if(wordIndex > -1) {      
       const data = QUILL.clipboard.convert(MyDictionary.WORDS[wordIndex].means); 
       QUILL.setContents(data, 'silent');
 
       MyDictionary.btnSaveChanges.unbind();
       MyDictionary.btnSaveChanges.click(()=> { MyDictionary.updateWord(word) });
 
-    } else {
-      // MyDictionary.selectedWordMeaning.html('Word not exists');
+    } else {      
       QUILL.setText('Word not exists');  
     }
   },
