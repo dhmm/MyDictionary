@@ -5,7 +5,7 @@ Simple Mozilla Extension where you can keep your own dictionary.
 ##### Developer Note
 This Extension is for my own use. I upload it to Firefox Add-Ons place and I'm still waiting for approval. If you want , you can use it in debug mode
 ## Preview
-<img src=""/>
+<img src="https://github.com/dhmm/MyDictionary/blob/main/resources/preview.png"/>
 
 ## Setup in Debug Mode
 1. In Firefox type in the address bar
