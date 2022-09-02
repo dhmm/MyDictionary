@@ -76,7 +76,7 @@ var MyDictionary = {
     let index = MyDictionary.getWordIndex(word);        
     if(index > -1) {
       // Update existing word
-      let means = QUILL.getText();      
+      let means = QUILL.root.innerHTML;       
       MyDictionary.WORDS[index].means = means;                
       MyDictionary.saveChanges();  
     }
@@ -130,7 +130,10 @@ var MyDictionary = {
     MyDictionary.selectedWordHeader.html(word);
     if(wordIndex > -1) {
       // MyDictionary.selectedWordMeaning.html(MyDictionary.WORDS[wordIndex].means);
-      QUILL.setText(MyDictionary.WORDS[wordIndex].means); 
+      // QUILL.setText(MyDictionary.WORDS[wordIndex].means);
+      const data = QUILL.clipboard.convert(MyDictionary.WORDS[wordIndex].means); 
+      QUILL.setContents(data, 'silent');
+
       MyDictionary.btnSaveChanges.unbind();
       MyDictionary.btnSaveChanges.click(()=> { MyDictionary.updateWord(word) });
 
