@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/content_scripts/assets/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/content_scripts/assets/quill/quill.snow.css">
+  <link rel="stylesheet" href="my_dictionary.css">
+</head>
+
+<body>
+  <div class="content">
+    <div class="row">
+      <div class="col-12">
+        <h4>My Dictionary</h4>
+      </div>
+    </div>
+    <div id="searchOrAdd">
+      <div class="row">
+        <div class="col-8">
+          <input class="form-control form-control-sm" type="text" name="keyword" id="keyword">
+        </div>
+        <div class="col-4">
+          <button class="form-control form-control-sm btn btn-warning btn-sm" id="btnAdd">Add</button>
+        </div>
+      </div>
+    </div>
+    <div id="addWord">
+      <div class="row">
+        <div class="col-12">
+          <textarea class="form-control form-control-sm" name="txtaAddWord" id="txtaAddWord" noresize="noresize" cols="30"
+            rows="10"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button class="form-control form-control-sm btn btn-success btn-sm" id="btnAddWord">Add new word / Save</button>
+        </div>
+      </div>
+    </div>
+    <div id="findedWordsList" tabindex="-1">
+      <div class="row">
+        <div class="col-6">
+          <div id="lstWords" class="list-group">
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div id="findedWordMeaning">
+            <h2 id="selectedWordHeader">...</h2>
+            <div id="selectedWordMeaning" style="display:block;min-height:80%;">
+              ...
+            </div>
+            <br>
+            <div id="btnSaveChanges" class="btn btn-success">Save</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <script src="/content_scripts/assets/jquery/jquery.js"></script>
+  <script src="/content_scripts/assets/quill/quill.min.js"></script>
+  <script src="/content_scripts/assets/bootstrap/bootstrap.min.js"></script>
+
+  <script src="my_dictionary.js"></script>
+</body>
+
+</html>
